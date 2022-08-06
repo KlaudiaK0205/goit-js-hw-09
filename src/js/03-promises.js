@@ -17,23 +17,25 @@ const createPromise = (position, delay) => {
   return promise;
 };
 
-createBtn.addEventListener('click', event => {
+form.addEventListener('click', event => {
   event.preventDefault();
-
-  const delay = Number(form.elements.delay.value);
+  const delay = Number(form.elements.amount.value);
   const delaySteps = Number(form.elements.step.value);
-  const amount = form.elements.amount.value;
+  const amount = Number(form.elements.delay.value);
 
-  for (let i = 1; i <= amountInput; i++){
-    let newTime = 0;
-    const actualTime = sumTime(newTime, delayInput, delayStepsInput, i);
-    createPromise(i, actualTime)
+  for (let i = 1; i <= delay; i += 1) {
+    let stepTime = amount + delaySteps * (i - 1);
+    createPromise(i, stepTime)
       .then(({ position, delay }) => {
-        Notify.success(`✅ Fulfilled promise ${position} in ${delay} ms`)
+        Notiflix.Notify.success(
+          `✅ Fulfilled promise ${position} in ${delay} ms`
+        );
       })
       .catch(({ position, delay }) => {
-        Notify.failure(`❌ Rejected promise ${position} in ${delay} ms`)
-      })
+        Notiflix.Notify.failure(
+          `❌ Rejected promise ${position} in ${delay} ms`
+        );
+      });
   }
 });
 

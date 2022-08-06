@@ -24,25 +24,25 @@ const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 return { days, hours, minutes, seconds };
 };
 
-// let selectedDate = null;
+let selectDate = null;
 
-// const options = {
-//     enableTime: true,
-//     time_24hr: true,
-//     defaultDate: new Date(),
-//     minuteIncrement: 1,
-//     onClose(selectedDates) {
+const options = {
+    enableTime: true,
+    time_24hr: true,
+    defaultDate: new Date(),
+    minuteIncrement: 1,
+    onClose(selectedDates) {
 
-//     const selected = selectedDates[0].getTime();
-//     if (selected < options.defaultDate.getTime()) {
-//         Notiflix.Notify.failure('Please choose a date in the future');
-//     } else {
-//     startBtn.disabled = false;
-//     //console.log(selectedDates[0]);//
-//     return selectedDate = selectedDates[0];
-//         }
-//     },
-// };
+    const selected = selectDates[0].getTime();
+    if (selected < options.defaultDate.getTime()) {
+        Notiflix.Notify.failure('Please choose a date in the future');
+    } else {
+    startBtn.disabled = false;
+    //console.log(selectedDates[0]);//
+    return selectDate = selectedDates[0];
+        }
+    },
+};
 
 // flatpickr('#datetime-picker', options);
 
